@@ -7,7 +7,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 export async function getStaticProps() {
 
     const images = await Client().query(
-        Prismic.Predicates.at("document.type", "outdoor_page")
+        Prismic.Predicates.at("document.type", "indoor_portraits_page")
     );
 
     let image_links = [];
@@ -29,7 +29,7 @@ export async function getStaticProps() {
 function Outdoor({ image_links }) {
     const [flag, setFlag] = useState(3)
     const [width, setwidth] = useState(0)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [display, setDisplay] = useState("none")
     const [imagesrc, setImagesrc] = useState(" ")
     const [imagelinks, setImagelinks] = useState([])
@@ -48,7 +48,7 @@ function Outdoor({ image_links }) {
         setImagelinks(image_links)
         setwidth(window.screen.width)
         setTimeout(() => {
-            setLoading(true)
+            setLoading(false)
         }, 500);
         setTimeout(() => {
             setDisplay("flex")
@@ -146,7 +146,7 @@ function Outdoor({ image_links }) {
             <div className="gallery-container">
 
                 {
-                    loading == false ?
+                    loading == true ?
                         <div className="gallery-container" >
                             <div className="text-center loader-container">
                                 <div>
