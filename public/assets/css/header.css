@@ -1,0 +1,323 @@
+
+*{
+    /* font-family: Montserrat; */
+    font-family: "American Captain";
+    /* font-weight: bold; */
+}
+.navbar {
+    /* border: 2px solid black; */
+    width: 60%;
+    height: 22px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    opacity: 80%;
+    background-color: #ffffff;
+
+    align-items: center;
+    top:0px;
+    
+    
+    /* z-index: 1; */
+}
+/* .navbar link{
+    color: rgb(104, 102, 102) !important;
+    text-decoration: none !important;
+    
+}
+.nav-item-home:active {
+    color: rgb(7, 6, 6) !important;
+} */
+
+.header {
+    margin-top: 7px;
+    /* font-family: Montserrat; */
+    letter-spacing: 3px;
+    /* font-weight: lighter; */
+    
+    /* z-index: 100; */
+}
+.mobile-header {
+    display: flex;
+    justify-content: flex-end;
+    /* border: 2px solid black; */
+    height: 50px;
+    align-items: center;
+    box-shadow: 0px 1px 5px #afaeae;
+    /* box-shadow: 0 10px 10px -5px #9a9a9f; */
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+    letter-spacing: 4px;
+}
+.logo {
+    height: 99%;
+    width: auto;
+    margin: auto;
+}
+.logo-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+.mobile-logo{
+    /* height: 99%; */
+    height: 90%;
+    width: auto;
+    margin: auto;
+    justify-content: center;
+}
+.social-icons{
+    height: 25px;
+    width: 25%;
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    opacity: 50%;
+    /* box-shadow: 0px 1px 5px #afaeae; */
+    justify-content: center;
+    /* border: 2px solid rgb(255, 255, 255); */
+}
+.social-item {
+    height: 10px;
+    width: auto;
+}
+.menu-button {
+    margin-right: 18px;
+    margin-bottom: 64px;
+
+
+}
+#burger-toggle {
+    /* position: absolute; */
+    appearance: none;
+    opacity: 0;
+    z-index: 100;
+}
+#burger-toggle:checked~.menu {
+    opacity: 1;
+    visibility: visible;
+}
+#burger-toggle:checked~.menu .menu-nav-link span div,
+#burger-toggle:checked~.menu img,
+#burger-toggle:checked~.menu .title p {
+    transform: translateY(0);
+    transition: 1.2s 0.1s cubic-bezier(0.35, 0, 0.07, 1);
+}
+#burger-toggle:checked~.menu .image-link:nth-child(1) img {
+    transition-delay: 0.18s;
+}
+#burger-toggle:checked~.menu .image-link:nth-child(2) img {
+    transition-delay: 0.26s;
+}
+#burger-toggle:checked~.menu .image-link:nth-child(3) img {
+    transition-delay: 0.34s;
+}
+#burger-toggle:checked~.menu .image-link:nth-child(4) img {
+    transition-delay: 0.42s;
+}
+#burger-toggle:checked~.burger-menu .line::after {
+    transform: translateX(0);
+}
+#burger-toggle:checked~.burger-menu .line:nth-child(1) {
+    transform: translateY(calc(var(--burger-menu-radius) / 5)) rotate(45deg);
+}
+#burger-toggle:checked~.burger-menu .line:nth-child(2) {
+    transform: scaleX(0);
+}
+#burger-toggle:checked~.burger-menu .line:nth-child(3) {
+    transform: translateY(calc(var(--burger-menu-radius) / -5)) rotate(-45deg);
+}
+.burger-menu {
+    --burger-menu-radius: 2.5em;
+    position: fixed;
+    /* top: 5vh;
+    left: 5vw; */
+    z-index: 100;
+    display: block;
+    width: var(--burger-menu-radius);
+    height: var(--burger-menu-radius);
+    outline: none;
+    cursor: pointer;
+}
+.burger-menu .line {
+    position: absolute;
+    /* left: 25%; */
+    width: 50%;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.burger-menu .line:nth-child(1) {
+    top: 30%;
+}
+.burger-menu .line:nth-child(2) {
+    top: 50%;
+}
+.burger-menu .line:nth-child(3) {
+    top: 70%;
+}
+.burger-menu .line::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color-darker);
+    transform: translateX(-100%);
+    transition: 0.25s;
+}
+.burger-menu .line:nth-child(2)::after {
+    transition-delay: 0.1s;
+}
+.burger-menu .line:nth-child(3)::after {
+    transition-delay: 0.2s;
+}
+.burger-menu:hover .line::after {
+    transform: translateX(0);
+}
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    opacity: 0;
+    overflow-x: hidden;
+    visibility: hidden;
+    transition: 0.3s;
+}
+.menu-inner {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.active a{
+    color: rgb(3, 3, 3) !important;
+}
+li .active{
+    color: rgb(3, 3, 3) !important;
+}
+.active{
+    color: rgb(3, 3, 3) !important;
+}
+.a span{
+    color: rgb(3, 3, 3) !important;
+}
+@media screen and (max-width: 750px) {
+    .menu {
+        display: block;
+    }
+}
+.menu-nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding: 0;
+    text-align: center;
+    list-style-type: none;
+    align-items: center;
+    /* justify-content: space-between; */
+    justify-content: center;
+    height: 100%;
+
+}
+@media screen and (max-width: 750px) {
+    .menu-nav {
+        flex-direction: column;
+    }
+}
+.menu-nav-item {
+    /* flex: 1; */
+    margin: 20px;
+
+}
+.menu-nav-link {
+    position: relative;
+    display: inline-flex;
+    font-size: 1rem;
+    color: black;
+    text-decoration: none;
+    /* font-size: x-large; */
+}
+.menu-nav-link span {
+    overflow: hidden;
+}
+
+.menu-nav-link span div {
+    transform: translateY(102%);
+}
+.menu-nav-link::after {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+.menu-nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+.menu .title {
+    font-size: 24px;
+    color: white;
+    overflow: hidden;
+}
+.menu .title p {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transform: translateY(102%);
+}
+@media only screen and (max-width: 766px) {
+    .header {
+        display: none;
+
+    }
+    .social-icons{
+        width: 15%;
+    }
+}
+@media only screen and (min-width: 767px) {
+    .mobile-header {
+        display: none;
+    }
+}
+#sgr-logo {
+    
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    margin-top: -75px;
+}
+/* .sign {
+    justify-content: center;
+    height: 65px;
+    width: auto;
+} */
+.main-page-logo {
+    height: auto;
+    width: 25%;
+    margin: auto;
+    justify-content: center;
+}
+.logo {
+    display: flex;
+}
+.social {
+    display: flex;
+    justify-content: center;
+
+}
+

@@ -1,0 +1,133 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.slider-container {
+    position: relative;
+
+}
+
+.slide {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-x: hidden;
+}
+.caption {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 40px 0px;
+    /* opacity: .6; */
+}
+.caption h1 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 50px;
+    padding: 18px;
+}
+.slide-page-heading{
+    /* font-family:"helvetica" !important; */
+    text-transform:"uppercase";
+    letter-spacing:1px!important;
+    font-weight:500!important;
+   font-size:85px !important
+}
+.caption p {
+    max-width: 600px;
+    width: 90%;
+    margin: 0px auto;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5em;
+    width: 100%;
+    height: 100%;
+    letter-spacing:6px!important;
+    /* background-color: black;
+    opacity: 1 !important; */
+}
+
+
+.button-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 15px;
+}
+.slider-button{
+    border: 2px white solid;
+    height: 45px;
+    width: 10%;
+    cursor: pointer;
+    margin: 9px;
+    letter-spacing:6px!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.slider-button a {
+    text-decoration: none;
+    opacity: 1 !important;
+    color: white !important;
+}
+.slider-button:hover{
+    background-color: rgb(255, 255, 255);
+    opacity: 1;
+    color: rgb(0, 0, 0) !important;
+}
+.slider-button a:hover {
+    color: rgb(0, 0, 0) !important;
+}
+
+@media screen and (max-width: 767px) 
+{
+    .slider-button{
+        height: 50px;
+        width: 33%;
+        letter-spacing:3px!important;
+    }
+    .slide-page-heading 
+    {
+        font-weight:500!important;
+        font-size:60px !important
+    }
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1000px)  {
+    .slider-button{
+        height: 50px;
+        width: 25%;
+        letter-spacing:3px!important;
+    }
+    .slide-page-heading 
+    {
+        font-weight:500!important;
+        font-size:65px !important
+    }
+}
+
+@media screen and (min-device-width: 1000px) and (max-device-width: 1300px)
+{
+    .slider-button{
+        height: 50px;
+        width: 15%;
+        letter-spacing:3px!important;
+    }
+    .slide-page-heading 
+    {
+        font-weight:500!important;
+        font-size:70px !important
+    }
+}
+
+
+
