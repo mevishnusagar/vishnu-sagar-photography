@@ -6,7 +6,7 @@ function About() {
         <div className="aboutpage-image-content">
             <div className="container">
                 <div className="aboutpage-image">
-                    <img src="assets/images/sgr.jpg" ></img>
+                    <img src="assets/images/vishnu4.jpeg" ></img>
                 </div>
                 <div className="aboutpage-description-container">
                     <h2 className="aboutpage-description"> Hello,

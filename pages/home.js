@@ -142,9 +142,6 @@ function Home({ image_links }) {
     return (
 
         <div>
-            <Head>
-                <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=imagetesting"></script>
-            </Head>
             <div className="gallery-container">
                 {
                     loading == false ?
