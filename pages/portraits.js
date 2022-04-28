@@ -2,20 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import Prismic from "prismic-javascript";
+import { Client } from "../prismic-configuration";
 
-function Portraits() {
-    const [loading, setLoading] = useState(false)
+
+export async function getStaticProps() {
+
+    const images = await Client().query(
+        Prismic.Predicates.at("document.type", "portraits_thumbnails")
+    );
+    return {
+        props: {
+            indoor_thumbnail: images.results[0].data.indoor_portraits_thumbnail.url,
+            outdoor_thumbnail: images.results[0].data.outdoor_portraits_thumbnail.url
+        },
+    };
+}
+
+function Portraits({ indoor_thumbnail, outdoor_thumbnail}) {
+    const [loading, setLoading] = useState(true)
     const antIcon = <LoadingOutlined style={{ fontSize: 26 }} spin />;
-
     useEffect(() => {
         setTimeout(() => {
-            setLoading(true)
+            setLoading(false)
         }, 500);
     });
     return (
         <div className="container">
             {
-                    loading == false ?
+                    loading == true ?
                     <div className="gallery-container" >
                             <div className="text-center loader-container">
                                 <div>
@@ -34,7 +49,7 @@ function Portraits() {
                     <div className="portraits-page-menu-item">
                         <Link href="indoor">
                             <div>
-                                <img src="assets/images/indoor.jpeg" />
+                                <img src={indoor_thumbnail} />
                                 <div className="centered-text">
                                     <h1>INDOOR</h1>
                                 </div>
@@ -44,7 +59,7 @@ function Portraits() {
                     <div className="portraits-page-menu-item">
                         <Link href="outdoor">
                             <div>
-                                <img src="assets/images/outdoor.jpeg" />
+                                <img src={outdoor_thumbnail} />
                                 <div className="centered-text">
                                     <h1>OUTDOOR</h1>
                                 </div>
@@ -55,28 +70,6 @@ function Portraits() {
             </div>
         }
         </div>
-        // <div class="container">
-        //     <div className="portraits-page">
-        //         <div class="row portraits-page-menu">
-        //             <div class="col-12 portraits-page-menu-item col-md-6">
-        //                 <Link href="indoor">
-        //                     <img src="assets/images/indoor.jpeg" />
-        //                 </Link>
-        //                 <div>
-        //                     <h1>INDOOR</h1>
-        //                 </div>
-        //             </div>
-        //             <div class="col-12 portraits-page-menu-item col-md-6">
-        //                 <Link href="indoor">
-        //                     <img src="assets/images/outdoor.jpeg" />
-        //                 </Link>
-        //                 <div>
-        //                     <h1>OUTDOOR</h1>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     )
 }
 

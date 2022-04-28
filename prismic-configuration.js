@@ -1,6 +1,6 @@
 import Prismic from "prismic-javascript";
 
-export const apiEndpoint = "https://imagetesting.cdn.prismic.io/api/v2";
+export const apiEndpoint = "https://vishnusagarvijayanphotography.prismic.io/api/v2";
 
 export const accessToken = "";
 

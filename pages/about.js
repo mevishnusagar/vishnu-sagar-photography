@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link'
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import Prismic from "prismic-javascript";
+import { Client } from "../prismic-configuration";
 
 
-function About() {
+export async function getStaticProps() {
+
+    const images = await Client().query(
+        Prismic.Predicates.at("document.type", "about_page_image")
+    );
+    return {
+        props: {
+            about_page_image: images.results[0].data.about_page_image.url
+        },
+    };
+}
+
+function About({about_page_image}) {
     return (
         <div className="aboutpage-image-content">
             <div className="container">
                 <div className="aboutpage-image">
-                    <img src="assets/images/vishnu4.jpeg" ></img>
+                    <img src={about_page_image} ></img>
                 </div>
                 <div className="aboutpage-description-container">
                     <h2 className="aboutpage-description"> Hello,

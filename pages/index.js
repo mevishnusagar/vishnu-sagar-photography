@@ -5,7 +5,7 @@ import { Client } from "../prismic-configuration";
 export async function getStaticProps() {
 
     const images = await Client().query(
-        Prismic.Predicates.at("document.type", "automotive_page")
+        Prismic.Predicates.at("document.type", "home_page")
     );
     let image_links = [];
     {
@@ -31,7 +31,7 @@ function index({ image_links }) {
         var slide = document.querySelectorAll('.slide');
         var current = 0;
         start();
-        setInterval(() => next(), 5000)
+        setInterval(() => next(), 2500)
 
     }, []);
 
