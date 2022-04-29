@@ -15,7 +15,7 @@ export async function getStaticProps() {
             )))
         ))
     }
-
+    image_links.reverse()
     return {
         props: {
             image_links: image_links

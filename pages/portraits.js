@@ -66,6 +66,26 @@ function Portraits({ indoor_thumbnail, outdoor_thumbnail}) {
                             </div>
                         </Link>
                     </div>
+                    <div className="portraits-page-menu-item">
+                        <Link href="indoor">
+                            <div>
+                                <img src={indoor_thumbnail} />
+                                <div className="centered-text">
+                                    <h1>INDOOR</h1>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="portraits-page-menu-item">
+                        <Link href="outdoor">
+                            <div>
+                                <img src={outdoor_thumbnail} />
+                                <div className="centered-text">
+                                    <h1>OUTDOOR</h1>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
                 </div>
             </div>
         }
