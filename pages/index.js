@@ -5,7 +5,7 @@ import { Client } from "../prismic-configuration";
 export async function getStaticProps() {
 
     const images = await Client().query(
-        Prismic.Predicates.at("document.type", "home_page")
+        Prismic.Predicates.at("document.type", "slider")
     );
     let image_links = [];
     {
