@@ -8,18 +8,20 @@ import { Client } from "../prismic-configuration";
 
 export async function getStaticProps() {
 
-    const images = await Client().query(
-        Prismic.Predicates.at("document.type", "portraits_thumbnails")
+    const portraitCategories = await Client().query(
+        Prismic.Predicates.at("document.type", "portraits")
     );
+    const activePortraitCategories = portraitCategories.results.filter(category => category.data.visible == true)
+    console.log("filtered:", activePortraitCategories)
+    activePortraitCategories.sort((a,b) => a.data.order - b.data.order)
     return {
         props: {
-            indoor_thumbnail: images.results[0].data.indoor_portraits_thumbnail.url,
-            outdoor_thumbnail: images.results[0].data.outdoor_portraits_thumbnail.url
+            portraitCategories: activePortraitCategories
         },
     };
 }
 
-function Portraits({ indoor_thumbnail, outdoor_thumbnail}) {
+function Portraits({ portraitCategories }) {
     const [loading, setLoading] = useState(true)
     const antIcon = <LoadingOutlined style={{ fontSize: 26 }} spin />;
     useEffect(() => {
@@ -30,65 +32,38 @@ function Portraits({ indoor_thumbnail, outdoor_thumbnail}) {
     return (
         <div className="container">
             {
-                    loading == true ?
+                loading == true ?
                     <div className="gallery-container" >
-                            <div className="text-center loader-container">
-                                <div>
-                                    <Spin indicator={antIcon} /> 
-                                </div>
-                                <div>
-                                    <h2>loading..</h2>
-                                </div>
+                        <div className="text-center loader-container">
+                            <div>
+                                <Spin indicator={antIcon} />
                             </div>
-                            <div className="grid">
+                            <div>
+                                <h2>loading..</h2>
                             </div>
                         </div>
+                        <div className="grid">
+                        </div>
+                    </div>
                     :
-            <div className="portraits-page">
-                <div className="portraits-page-menu">
-                    <div className="portraits-page-menu-item">
-                        <Link href="indoor">
-                            <div>
-                                <img src={indoor_thumbnail} />
-                                <div className="centered-text">
-                                    <h1>INDOOR</h1>
-                                </div>
-                            </div>
-                        </Link>
+                    <div className="portraits-page">
+                        <div className="portraits-page-menu">
+                            {
+                                portraitCategories.map((category, index) => (
+                                    <div className="portraits-page-menu-item">
+                                        <Link href={`/portraits/${category.uid}`}>
+                                            <div>
+                                                <img src={category.data.thumbnail.url} />
+                                                <div className="centered-text">
+                                                    <h1>{category.data.page_name[0].text}</h1>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                ))}
+                        </div>
                     </div>
-                    <div className="portraits-page-menu-item">
-                        <Link href="outdoor">
-                            <div>
-                                <img src={outdoor_thumbnail} />
-                                <div className="centered-text">
-                                    <h1>OUTDOOR</h1>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="portraits-page-menu-item">
-                        <Link href="indoor">
-                            <div>
-                                <img src={indoor_thumbnail} />
-                                <div className="centered-text">
-                                    <h1>INDOOR</h1>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="portraits-page-menu-item">
-                        <Link href="outdoor">
-                            <div>
-                                <img src={outdoor_thumbnail} />
-                                <div className="centered-text">
-                                    <h1>OUTDOOR</h1>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        }
+            }
         </div>
     )
 }

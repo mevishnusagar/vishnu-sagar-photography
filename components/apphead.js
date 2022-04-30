@@ -136,7 +136,7 @@ export default function apphead() {
                     <div>
                         <div className="header">
                             <div className="logo">
-                                <Link href="/home" ><img src="assets/images/black-height-updated.png" className="main-page-logo"></img></Link>
+                                <Link href="/home" ><img src="/assets/images/black-height-updated.png" className="main-page-logo"></img></Link>
                             </div>
                             <div className="navbar">
                                 <div id="home-active">
@@ -185,7 +185,7 @@ export default function apphead() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a className="btn" href="https://www.instagram.com/mevishnusagar/" ><i
+                                    <a className="btn" href="https://www.instagram.com/vishnusagar_vijayan/" ><i
                                         className="fa fa-instagram fa-sm"></i>
                                     </a>
                                 </div>
@@ -193,7 +193,7 @@ export default function apphead() {
                         </div>
                         <div className="mobile-header sticky-top ">
                             <div className="logo-container">
-                                <Link href="/home"><img src="assets/images/black-height-updated.png" className="mobile-logo" /></Link>
+                                <Link href="/home"><img src="/assets/images/black-height-updated.png" className="mobile-logo" /></Link>
                             </div>
                             <div className="menu-button">
                                 <input type="checkbox" id="burger-toggle" />
@@ -239,7 +239,7 @@ export default function apphead() {
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <a className="btn" href="https://www.instagram.com/mevishnusagar/" ><i
+                                                        <a className="btn" href="https://www.instagram.com/vishnusagar_vijayan/" ><i
                                                             className="fa fa-instagram fa-sm"></i>
                                                         </a>
                                                     </div>
@@ -248,7 +248,7 @@ export default function apphead() {
                                         </ul>
                                     </div>
                                     <div id="sgr-logo">
-                                        <img src="assets/images/sign.png" className="sign" />
+                                        <img src="/assets/images/sign.png" className="sign" />
                                     </div>
                                 </div>
                             </div>
