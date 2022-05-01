@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import Prismic from "prismic-javascript";
 import { Client } from "../prismic-configuration";
+import Head from 'next/head'
 export async function getStaticProps() {
 
     const images = await Client().query(
@@ -68,6 +69,28 @@ function index({ image_links }) {
 
     return (
         <div >
+            <Head>
+                <title>Vishnu Sagar Photography</title>
+                <meta property="og:type" content="website" />
+                <meta
+                    name="keywords"
+                    content="photography, vishnu sagar, vishnu sagar photography, blacks photography, nude photography, 
+                    portrait photography, landscape photography, real estate photography,
+                    product photography, wedding photography, street photography, types of photography, maternity photography, 
+                    nature photography, car photography, commercial photography, photography hashtags
+                    body photography, long exposure photography"
+                />
+                <meta
+                    property="og:title"
+                    content="Vishnu Sagar Photography - Portfolio"
+                />
+                <meta
+                    name="description"
+                    content="Vishnu Sagar is photographer in canada"
+                />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:site_name" content="Vishnu Sagar Photography" />
+            </Head>
             <div>
                 <div className="slider-container">
                     {image_links.map((image_url, index) => (
