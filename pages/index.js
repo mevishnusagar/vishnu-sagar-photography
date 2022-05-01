@@ -74,7 +74,9 @@ function index({ image_links }) {
                 <meta property="og:type" content="website" />
                 <meta
                     name="keywords"
-                    content="photography, vishnu sagar, vishnu sagar photography, blacks photography, nude photography, 
+                    content="photography, photographer, photographer in canada, canada photography, canada, 
+                    canada photography, india, canada photography  vishnu sagar, vishnu sagar photography, 
+                    blacks photography, nude photography, 
                     portrait photography, landscape photography, real estate photography,
                     product photography, wedding photography, street photography, types of photography, maternity photography, 
                     nature photography, car photography, commercial photography, photography hashtags
