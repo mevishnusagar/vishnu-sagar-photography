@@ -47,7 +47,7 @@ function contactMe() {
     return (
         <div>
             <Head>
-                <title>{meta_title}</title>
+                <title>Contact Me - Vishnu Sagar Photography</title>
                 <meta property="og:type" content="website" />
                 <meta
                     name="keywords"
@@ -55,7 +55,7 @@ function contactMe() {
                 />
                 <meta
                     property="og:title"
-                    content=""
+                    content="Contact Me - Vishnu Sagar Photography"
                 />
                 <meta
                     name="description"

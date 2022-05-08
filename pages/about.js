@@ -1,7 +1,7 @@
 import React from 'react';
 import Prismic from "prismic-javascript";
 import { Client } from "../prismic-configuration";
-
+import Head from 'next/head'
 
 
 export async function getStaticProps() {
@@ -18,6 +18,25 @@ export async function getStaticProps() {
 
 function About({ about_page_image }) {
     return (
+        <div>
+                     <Head>
+                <title>About - Vishnu Sagar Photography</title>
+                <meta property="og:type" content="website" />
+                <meta
+                    name="keywords"
+                    content=""
+                />
+                <meta
+                    property="og:title"
+                    content="About - Vishnu Sagar Photography"
+                />
+                <meta
+                    name="description"
+                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
+                />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:site_name" content="Vishnu Sagar Photography" />
+            </Head>   
         <div className="aboutpage-image-content">
             <div className="container">
                 <div className="aboutpage-image">
@@ -36,6 +55,8 @@ function About({ about_page_image }) {
             </div>
 
         </div>
+        </div>
+
 
     )
 }
