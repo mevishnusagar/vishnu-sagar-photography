@@ -46,6 +46,24 @@ function contactMe() {
 
     return (
         <div>
+            <Head>
+                <title>{meta_title}</title>
+                <meta property="og:type" content="website" />
+                <meta
+                    name="keywords"
+                    content=""
+                />
+                <meta
+                    property="og:title"
+                    content=""
+                />
+                <meta
+                    name="description"
+                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
+                />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:site_name" content="Vishnu Sagar Photography" />
+            </Head>
             {
                 loading == false ?
                     <div className="gallery-container" >

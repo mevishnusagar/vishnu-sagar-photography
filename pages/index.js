@@ -79,16 +79,16 @@ function index({ image_links }) {
                     blacks photography, nude photography, 
                     portrait photography, landscape photography, real estate photography,
                     product photography, wedding photography, street photography, types of photography, maternity photography, 
-                    nature photography, car photography, commercial photography, photography hashtags
+                    nature photography, car photography, commercial photography, photography hashtags,
                     body photography, long exposure photography"
                 />
                 <meta
                     property="og:title"
-                    content="Vishnu Sagar Photography - Portfolio"
+                    content="Vishnusagar - Commercial Photographer"
                 />
                 <meta
                     name="description"
-                    content="Vishnu Sagar is photographer in canada"
+                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
                 />
                 <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
                 <meta property="og:site_name" content="Vishnu Sagar Photography" />

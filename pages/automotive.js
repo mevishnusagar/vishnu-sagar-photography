@@ -3,37 +3,37 @@ import Prismic from "prismic-javascript";
 import { Client } from "../prismic-configuration";
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import Head from 'next/head'
 
 
 export async function getStaticProps() {
 
-    const images = await Client().query(
+    const prismicData = await Client().query(
         Prismic.Predicates.at("document.type", "automotive_page")
     );
-    let image_links = [];
-    {
-        images.results.map((image, index) => (
-            (image.data.images_group.map((pic, index) => (
-                image_links.push(pic.image.url)
-            )))
-        ))
-    }
-    image_links.reverse()
+    console.log(prismicData.results)
+    let images_Data = prismicData.results[0].data.images_group
+    console.log("images_Data:", images_Data)
+    images_Data.reverse()
+    let meta_title = prismicData?.results[0]?.data?.meta_title[0]?.text
+    let meta_keywords = prismicData?.results[0]?.data?.meta_keywords[0]?.text
     return {
         props: {
-            image_links: image_links
+            images_Data: images_Data,
+            meta_title: meta_title,
+            meta_keywords: meta_keywords
         },
     };
 }
 
-function Automotive({ image_links }) {
+function Automotive({ images_Data, meta_title, meta_keywords}) {
     const [flag, setFlag] = useState(3)
     const [width, setwidth] = useState(0)
     const [loading, setLoading] = useState(false)
     const [display, setDisplay] = useState("none")
     const [open, setOpen] = useState("")
     const [imagesrc, setImagesrc] = useState(" ")
-    const [imagelinks, setImagelinks] = useState([])
+    const [imagesData, setImagesData] = useState([])
     const [startingX, setStartingX] = useState();
     const [startingY, setStartingY] = useState();
     const [movingX, setMovingX] = useState();
@@ -46,7 +46,7 @@ function Automotive({ image_links }) {
             columns: '.grid-col',
             items: '.grid-item'
         });
-        setImagelinks(image_links)
+        setImagesData(images_Data)
         setwidth(window.screen.width)
         setTimeout(() => {
             setLoading(true)
@@ -85,31 +85,31 @@ function Automotive({ image_links }) {
     const nextImage = () => {
         setStartingX(0)
         console.log(startingX)
-        let size = imagelinks.length
-        let index = imagelinks.findIndex(img => img == imagesrc);
+        let size = imagesData.length
+        let index = imagesData.findIndex(img => img.image.url == imagesrc);
         if (index == size - 1) {
             index = 0;
         }
         else {
             index++
         }
-        let nextImage = imagelinks[index]
-        setImagesrc(nextImage)
+        let nextImage = imagesData[index]
+        setImagesrc(nextImage.image.url)
     }
     const prevImage = () => {
         setStartingX(0)
         console.log(startingX)
-        let size = imagelinks.length
-        let index = imagelinks.findIndex(img => img == imagesrc);
+        let size = imagesData.length
+        let index = imagesData.findIndex(img => img.image.url == imagesrc);
         if (index == 0) {
             index = size - 1;
         }
         else {
             index--
         }
-        let nextImage = imagelinks[index]
-        setImagesrc(nextImage)
-        
+        let nextImage = imagesData[index]
+        setImagesrc(nextImage.image.url)
+
     }
     const touchStart = (event) => {
         setStartingX(0)
@@ -123,86 +123,104 @@ function Automotive({ image_links }) {
         var movex = event.touches[0].clientX
         setMovingX(movex)
         console.log(startingX)
-        console.log("movingX: ",movingX)
+        console.log("movingX: ", movingX)
         var movey = event.touches[0].clientY
         setMovingY(movey)
     }
     const touchEnd = () => {
-        if (startingX+30 < movingX){
+        if (startingX + 30 < movingX) {
             console.log("right")
             console.log(startingX)
             prevImage()
         }
-        else if (startingX-30 > movingX){
+        else if (startingX - 30 > movingX) {
             console.log("left")
             console.log(startingX)
             nextImage()
-            
+
         }
     }
 
     return (
-
         <div>
-            <div className="gallery-container">
-                {
-                    loading == false ?
-                        <div className="gallery-container" >
-                            <div className="text-center loader-container">
-                                <div>
-                                    <Spin indicator={antIcon} />
+            <Head>
+                <title>{meta_title}</title>
+                <meta property="og:type" content="website" />
+                <meta
+                    name="keywords"
+                    content={meta_keywords}
+                />
+                <meta
+                    property="og:title"
+                    content={meta_title}
+                />
+                <meta
+                    name="description"
+                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
+                />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:site_name" content="Vishnu Sagar Photography" />
+            </Head>
+            <div>
+                <div className="gallery-container">
+                    {
+                        loading == false ?
+                            <div className="gallery-container" >
+                                <div className="text-center loader-container">
+                                    <div>
+                                        <Spin indicator={antIcon} />
+                                    </div>
+                                    <div>
+                                        <h2>loading..</h2>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h2>loading..</h2>
+                                <div className="grid">
                                 </div>
                             </div>
-                            <div className="grid">
+                            :
+                            <div className="grid" style={{ display: display }}>
+                                <div className="grid-col grid-col--1">
+
+                                </div>
+                                <div className="grid-col grid-col--2">
+
+                                </div>
+                                <div className="grid-col grid-col--3">
+
+                                </div>
+                                <div className="grid-col grid-col--4">
+
+                                </div>
+                                {images_Data.map((item, index) => (
+
+                                    <div className="grid-item" key={index}>
+
+                                        <img src={item.image.url} alt={item.image.alt} className="images" style={flag == 2 && index % 2 ? inputStyle2 : inputStyle} onClick={() => displayImage(item.image.url)} />
+                                    </div>
+                                ))}
                             </div>
+
+                    }
+                </div>
+                <div className="modalp">
+                    <div className="preview-container">
+                        <div className="right" onClick={() => nextImage()} title="Next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
                         </div>
-                        :
-                        <div className="grid" style={{ display: display }}>
-                            <div className="grid-col grid-col--1">
-
-                            </div>
-                            <div className="grid-col grid-col--2">
-
-                            </div>
-                            <div className="grid-col grid-col--3">
-
-                            </div>
-                            <div className="grid-col grid-col--4">
-
-                            </div>
-                            {image_links.map((image_url, index) => (
-
-                                <div className="grid-item" key={index}>
-
-                                    <img src={image_url} className="images" style={flag == 2 && index % 2 ? inputStyle2 : inputStyle} onClick={() => displayImage(image_url)} />
-                                </div>
-                            ))}
+                        <div>
+                            <img src={imagesrc} className="full-img" onTouchStart={() => touchStart(event)} onTouchMove={() => touchMove(event)} onTouchEnd={() => touchEnd()} />
                         </div>
-                        
-                }
-            </div>
-            <div className="modalp">
-                <div className="preview-container">
-                    <div className="right" onClick={() => nextImage()} title="Next">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className ="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <img src={imagesrc} className="full-img" onTouchStart = {() => touchStart(event)} onTouchMove={() => touchMove(event)} onTouchEnd={() => touchEnd()} />
-                    </div>
-                    <div className="left" onClick={() => prevImage()} title="Previous">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className ="bi bi-chevron-left" viewBox="0 0 16 16">
-                            <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                        </svg>
+                        <div className="left" onClick={() => prevImage()} title="Previous">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     )
 }
 

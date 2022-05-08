@@ -3,8 +3,10 @@ import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import Prismic from "prismic-javascript";
 import { Client } from "../../prismic-configuration";
+import Head from 'next/head'
 
 export async function getStaticPaths() {
+
     const portraits = await Client().query(
         Prismic.Predicates.at("document.type", "portraits")
     );
@@ -21,32 +23,30 @@ export async function getStaticPaths() {
 
 // params will contain the id for each generated page.
 export async function getStaticProps({ params }) {
-    const portrait = await Client().getByUID("portraits", params.portraitType);
-    console.log(portrait)
-    let image_links = [];
-    {
-        (portrait.data.images_group.map((pic, index) => (
-            image_links.push(pic.image.url)
-        )))
-
-    }
-    image_links.reverse()
-    console.log(image_links)
+    const prismicData = await Client().getByUID("portraits", params.portraitType);
+    console.log("prismicData:",prismicData)
+    let images_Data = prismicData.data.images_group
+    console.log("images_Data:", images_Data)
+    images_Data.reverse()
+    let meta_title = prismicData?.data?.meta_title[0]?.text
+    let meta_keywords = prismicData?.data?.meta_keywords[0]?.text
     return {
         props: {
-            image_links: image_links
+            images_Data: images_Data,
+            meta_title: meta_title,
+            meta_keywords: meta_keywords
         },
     };
 }
 
-function PortraitType({ image_links }) {
+function PortraitType({ images_Data, meta_title, meta_keywords }) {
     const [flag, setFlag] = useState(3)
     const [width, setwidth] = useState(0)
     const [loading, setLoading] = useState(true)
     const [display, setDisplay] = useState("none")
     const [open, setOpen] = useState("")
     const [imagesrc, setImagesrc] = useState(" ")
-    const [imagelinks, setImagelinks] = useState([])
+    const [imagesData, setImagesData] = useState([])
     const [startingX, setStartingX] = useState();
     const [startingY, setStartingY] = useState();
     const [movingX, setMovingX] = useState();
@@ -59,7 +59,7 @@ function PortraitType({ image_links }) {
             columns: '.grid-col',
             items: '.grid-item'
         });
-        setImagelinks(image_links)
+        setImagesData(images_Data)
         setwidth(window.screen.width)
         setTimeout(() => {
             setLoading(false)
@@ -98,30 +98,30 @@ function PortraitType({ image_links }) {
     const nextImage = () => {
         setStartingX(0)
         console.log(startingX)
-        let size = imagelinks.length
-        let index = imagelinks.findIndex(img => img == imagesrc);
+        let size = imagesData.length
+        let index = imagesData.findIndex(img => img.image.url == imagesrc);
         if (index == size - 1) {
             index = 0;
         }
         else {
             index++
         }
-        let nextImage = imagelinks[index]
-        setImagesrc(nextImage)
+        let nextImage = imagesData[index]
+        setImagesrc(nextImage.image.url)
     }
     const prevImage = () => {
         setStartingX(0)
         console.log(startingX)
-        let size = imagelinks.length
-        let index = imagelinks.findIndex(img => img == imagesrc);
+        let size = imagesData.length
+        let index = imagesData.findIndex(img => img.image.url == imagesrc);
         if (index == 0) {
             index = size - 1;
         }
         else {
             index--
         }
-        let nextImage = imagelinks[index]
-        setImagesrc(nextImage)
+        let nextImage = imagesData[index]
+        setImagesrc(nextImage.image.url)
 
     }
     const touchStart = (event) => {
@@ -152,10 +152,29 @@ function PortraitType({ image_links }) {
             nextImage()
 
         }
+
     }
 
     return (
         <div>
+            <Head>
+                <title>{meta_title}</title>
+                <meta property="og:type" content="website" />
+                <meta
+                    name="keywords"
+                    content={meta_keywords}
+                />
+                <meta
+                    property="og:title"
+                    content={meta_title}
+                />
+                <meta
+                    name="description"
+                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
+                />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:site_name" content="Vishnu Sagar Photography" />
+            </Head>
             <div className="gallery-container">
 
                 {
@@ -186,11 +205,11 @@ function PortraitType({ image_links }) {
                             <div className="grid-col grid-col--4">
 
                             </div>
-                            {image_links.map((image_url, index) => (
+                            {images_Data.map((item, index) => (
 
                                 <div className="grid-item" key={index}>
 
-                                    <img src={image_url} className="images" style={flag == 2 && index % 2 ? inputStyle2 : inputStyle} onClick={() => displayImage(image_url)} />
+                                    <img src={item.image.url} alt={item.image.alt} className="images" style={flag == 2 && index % 2 ? inputStyle2 : inputStyle} onClick={() => displayImage(item.image.url)} />
                                 </div>
                             ))}
                         </div>
@@ -219,6 +238,7 @@ function PortraitType({ image_links }) {
         </div>
     )
 }
+
 
 export default PortraitType
 

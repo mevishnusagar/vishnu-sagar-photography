@@ -4,6 +4,7 @@ import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import Prismic from "prismic-javascript";
 import { Client } from "../prismic-configuration";
+import Head from 'next/head'
 
 
 export async function getStaticProps() {
@@ -13,15 +14,21 @@ export async function getStaticProps() {
     );
     const activePortraitCategories = portraitCategories.results.filter(category => category.data.visible == true)
     console.log("filtered:", activePortraitCategories)
-    activePortraitCategories.sort((a,b) => a.data.order - b.data.order)
+    activePortraitCategories.sort((a, b) => a.data.order - b.data.order)
+    let meta_keywords = []
+    for (let i = 0; i < activePortraitCategories.length; i++) {
+        let category_name = activePortraitCategories[i].data.page_name[0].text + " Photography"
+        meta_keywords.push(category_name)
+    }
     return {
         props: {
-            portraitCategories: activePortraitCategories
+            portraitCategories: activePortraitCategories,
+            meta_keywords: meta_keywords
         },
     };
 }
 
-function Portraits({ portraitCategories }) {
+function Portraits({ portraitCategories, meta_keywords }) {
     const [loading, setLoading] = useState(true)
     const antIcon = <LoadingOutlined style={{ fontSize: 26 }} spin />;
     useEffect(() => {
@@ -31,6 +38,24 @@ function Portraits({ portraitCategories }) {
     });
     return (
         <div className="container">
+            <Head>
+                <title>Portraits - Vishnu Sagar Photography</title>
+                <meta property="og:type" content="website" />
+                <meta
+                    name="keywords"
+                    content={meta_keywords}
+                />
+                <meta
+                    property="og:title"
+                    content="Portraits - Vishnu Sagar Photography"
+                />
+                <meta
+                    name="description"
+                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
+                />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:site_name" content="Vishnu Sagar Photography" />
+            </Head>
             {
                 loading == true ?
                     <div className="gallery-container" >

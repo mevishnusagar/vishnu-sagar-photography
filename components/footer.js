@@ -22,7 +22,7 @@ function footer() {
                     <div>
                         <div>
                             <div className="text-center footer-in-index">
-                                <img src="/assets/images/sign-white.png" className="sign"></img>
+                                <img src="/assets/images/sign-white.png" alt="Vishnu Sagar Photography" className="sign"></img>
                             </div>
                         </div>
                         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
@@ -33,7 +33,7 @@ function footer() {
                     <div>
                         <div>
                             <div className="text-center footer">
-                                <img src="/assets/images/sign.png" className="sign"></img>
+                                <img src="/assets/images/sign.png" alt="Vishnu Sagar Photography" className="sign"></img>
                             </div>
                         </div>
                         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
