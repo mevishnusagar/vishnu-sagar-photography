@@ -33,7 +33,21 @@ class MyDocument extends Document {
           <meta property="og:type" content="Vishnu Sagar photography" />
           <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
           <meta property="og:image:url" content="/assets/images/black-height-updated.png" />
-          <meta property="og:description" content="Vishnu Sagar is a photographer based in canada" />
+          <meta
+            name="keywords"
+            content="photography, photographer, photographer in canada, canada photography, canada, 
+                    canada photography, india, canada photography  vishnu sagar, vishnu sagar photography, 
+                    blacks photography, nude photography, 
+                    portrait photography, landscape photography, real estate photography,
+                    product photography, wedding photography, street photography, types of photography, maternity photography, 
+                    nature photography, car photography, commercial photography, photography hashtags,
+                    body photography, long exposure photography"
+          />
+          <meta
+            property="og:title"
+            content="Vishnusagar - Commercial Photographer"
+          />
+          <meta property="og:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
           <meta property="og:image" content="/assets/images/black-height-updated.png" />
           <meta property="og:image:type" content="image/png" />
           <meta property="og:image:width" content="200" />
