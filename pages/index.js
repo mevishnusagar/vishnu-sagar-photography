@@ -72,6 +72,7 @@ function index({ image_links }) {
             <Head>
                 <title>Vishnu Sagar Photography</title>
                 <meta property="og:type" content="website" />
+                <meta name="google-site-verification" content="yQTvrjew0Y8Ab9mTVqlg11EoEypDiAkMmifROtxK6hk" />
                 <meta
                     name="keywords"
                     content="photography, photographer, photographer in canada, canada photography, canada, 

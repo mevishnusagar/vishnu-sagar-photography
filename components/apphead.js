@@ -175,12 +175,12 @@ export default function apphead() {
                             </div>
                             <div className="social-icons">
                                 <div>
-                                    <a className="btn" href="http://www.facebook.com/profile.php?id=" ><i
+                                    <a className="btn" href="https://www.facebook.com/mevishnusagar" ><i
                                         className="fa fa-facebook fa-sm"></i>
                                     </a>
                                 </div>
                                 <div>
-                                    <a className="btn" href="http://www.facebook.com/profile.php?id=" ><i
+                                    <a className="btn" href="https://twitter.com/iamvishnusagar/" ><i
                                         className="fa fa-twitter fa-sm"></i>
                                     </a>
                                 </div>
@@ -229,12 +229,12 @@ export default function apphead() {
                                             <li>
                                                 <div className="social-icons">
                                                     <div>
-                                                        <a className="btn" href="http://www.facebook.com/profile.php?id=" ><i
+                                                        <a className="btn" href="https://www.facebook.com/mevishnusagar" ><i
                                                             className="fa fa-facebook fa-sm"></i>
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <a className="btn" href="http://www.facebook.com/profile.php?id=" ><i
+                                                        <a className="btn" href="https://twitter.com/iamvishnusagar/" ><i
                                                             className="fa fa-twitter fa-sm"></i>
                                                         </a>
                                                     </div>
