@@ -163,7 +163,7 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
                     content={meta_title}
                 />
                 <meta property="og:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
-                <meta property="og:image" content={meta_ogImage.length < 0 ? meta_ogImage : "/assets/images/sgr.JPG"} />
+                <meta property="og:image" content={meta_ogImage.length > 0 ? meta_ogImage : "/assets/images/sgr.JPG"} />
 
                 {/* -- Twitter - */}
                 <meta property="twitter:card" content="summary_large_image" />
