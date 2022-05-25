@@ -43,6 +43,7 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
     const [movingY, setMovingY] = useState();
     const antIcon = <LoadingOutlined style={{ fontSize: 26 }} spin />;
     const [pageUrl, setPageUrl] = useState("")
+    const [previewOpacicty, setPreviewOpacicty] = useState(.3)
     useEffect(() => {
 
         var grid = document.querySelector('.grid');
@@ -86,8 +87,22 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
                 modalp.classList.remove("open");
             }
         })
+        setTimeout(() => {
+            setPreviewOpacicty(.5)
+        }, 50);
+        setTimeout(() => {
+            setPreviewOpacicty(1)
+        }, 50);
+
     }
     const nextImage = () => {
+        setPreviewOpacicty(.3)
+        setTimeout(() => {
+            setPreviewOpacicty(.5)
+        }, 50);
+        setTimeout(() => {
+            setPreviewOpacicty(1)
+        }, 50);
         setStartingX(0)
         console.log(startingX)
         let size = imagesData.length
@@ -102,6 +117,13 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
         setImagesrc(nextImage.image.url)
     }
     const prevImage = () => {
+        setPreviewOpacicty(.3)
+        setTimeout(() => {
+            setPreviewOpacicty(.5)
+        }, 50);
+        setTimeout(() => {
+            setPreviewOpacicty(1)
+        }, 50);
         setStartingX(0)
         console.log(startingX)
         let size = imagesData.length
@@ -227,7 +249,7 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
                         </svg>
                     </div>
                     <div>
-                        <img src={imagesrc} className="full-img" onTouchStart={() => touchStart(event)} onTouchMove={() => touchMove(event)} onTouchEnd={() => touchEnd()} />
+                        <img style={{opacity: previewOpacicty}} src={imagesrc} className="full-img" onTouchStart={() => touchStart(event)} onTouchMove={() => touchMove(event)} onTouchEnd={() => touchEnd()} />
                     </div>
                     <div className="left" onClick={() => prevImage()} title="Previous">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
