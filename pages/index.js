@@ -81,6 +81,7 @@ function index({ image_links }) {
                 <meta property="og:title" content="Vishnusagar - Commercial Photographer" />
                 <meta property="og:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
                 <meta property="og:image" content="/assets/images/sgr.JPG" />
+                <meta property="og:image:url" content="/assets/images/sgr.JPG" />
 
                 {/* -- Twitter - */}
                 <meta property="twitter:card" content="summary_large_image" />
