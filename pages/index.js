@@ -70,8 +70,25 @@ function index({ image_links }) {
     return (
         <div >
             <Head>
-                <title>Vishnu Sagar Photography</title>
+                {/* -- Primary Meta Tags -- */}
+                <title>Vishnusagar - Commercial Photographer</title>
+                <meta name="title" content="Vishnusagar - Commercial Photographer" />
+                <meta name="description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
+
+                {/* -- Open Graph / Facebook -- */}
                 <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:title" content="Vishnusagar - Commercial Photographer" />
+                <meta property="og:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
+                <meta property="og:image" content="/assets/images/black-height-updated.png" />
+
+                {/* -- Twitter - */}
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="twitter:title" content="Vishnusagar - Commercial Photographer" />
+                <meta property="twitter:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
+                <meta property="twitter:image" content="/assets/images/black-height-updated.png" />
+
                 <meta name="google-site-verification" content="yQTvrjew0Y8Ab9mTVqlg11EoEypDiAkMmifROtxK6hk" />
                 <meta
                     name="keywords"
@@ -83,16 +100,9 @@ function index({ image_links }) {
                     nature photography, car photography, commercial photography, photography hashtags,
                     body photography, long exposure photography"
                 />
-                <meta
-                    property="og:title"
-                    content="Vishnusagar - Commercial Photographer"
-                />
-                <meta
-                    name="description"
-                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
-                />
-                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
                 <meta property="og:site_name" content="Vishnu Sagar Photography" />
+                <meta name="author" content="Vishnu Sagar"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             </Head>
             <div>
                 <div className="slider-container">
