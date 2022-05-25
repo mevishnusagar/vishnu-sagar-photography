@@ -16,9 +16,8 @@ export async function getStaticProps() {
     images_Data.reverse()
     let meta_title = prismicData?.results[0]?.data?.meta_title[0]?.text
     let meta_keywords = prismicData?.results[0]?.data?.meta_keywords[0]?.text
-    let meta_ogImage = Array.isArray(prismicData?.results[0]?.data?.social_media_image_thumbnail) ?
+    let meta_ogImage = Object.keys(prismicData?.results[0]?.data?.social_media_image_thumbnail).length > 0 ?
         prismicData?.results[0]?.data?.social_media_image_thumbnail.url : ""
-
     return {
         props: {
             images_Data: images_Data,
@@ -171,7 +170,7 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
                 <meta property="twitter:url" content={pageUrl} />
                 <meta property="twitter:title" content={meta_title} />
                 <meta property="twitter:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
-                <meta property="twitter:image" content={meta_ogImage.length < 0 ? meta_ogImage : "/assets/images/sgr.JPG"} />
+                <meta property="twitter:image" content={meta_ogImage.length > 0 ? meta_ogImage : "/assets/images/sgr.JPG"} />
                 <meta
                     name="keywords"
                     content={meta_keywords}
