@@ -80,14 +80,14 @@ function index({ image_links }) {
                 <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
                 <meta property="og:title" content="Vishnusagar - Commercial Photographer" />
                 <meta property="og:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
-                <meta property="og:image" content="/assets/images/black-height-updated.png" />
+                <meta property="og:image" content="/assets/images/sgr.JPG" />
 
                 {/* -- Twitter - */}
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content="https://www.vishnusagarphotography.com/" />
                 <meta property="twitter:title" content="Vishnusagar - Commercial Photographer" />
                 <meta property="twitter:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
-                <meta property="twitter:image" content="/assets/images/black-height-updated.png" />
+                <meta property="twitter:image" content="/assets/images/sgr.JPG" />
 
                 <meta name="google-site-verification" content="yQTvrjew0Y8Ab9mTVqlg11EoEypDiAkMmifROtxK6hk" />
                 <meta
