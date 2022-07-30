@@ -61,8 +61,9 @@ function contactMe() {
                     name="description"
                     content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
                 />
-                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
+                <meta property="og:url" content="https://www.vishnusagarphotography.com/contact-me" />
                 <meta property="og:site_name" content="Vishnu Sagar Photography" />
+                <meta property="og:image" content="/assets/images/sgr.JPG" />
             </Head>
             {
                 loading == false ?

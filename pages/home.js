@@ -11,12 +11,11 @@ export async function getStaticProps() {
     const prismicData = await Client().query(
         Prismic.Predicates.at("document.type", "home_page")
     );
-    console.log(prismicData.results)
     let images_Data = prismicData.results[0].data.images_group
     images_Data.reverse()
     let meta_title = prismicData?.results[0]?.data?.meta_title[0]?.text
     let meta_keywords = prismicData?.results[0]?.data?.meta_keywords[0]?.text
-    let meta_ogImage = Object.keys(prismicData?.results[0]?.data?.social_media_image_thumbnail).length > 0 ?
+    let meta_ogImage = Object.keys(prismicData?.results[0]?.data?.social_media_image_thumbnail).length != 0 ?
         prismicData?.results[0]?.data?.social_media_image_thumbnail.url : ""
     return {
         props: {
@@ -43,9 +42,8 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
     const [movingY, setMovingY] = useState();
     const antIcon = <LoadingOutlined style={{ fontSize: 26 }} spin />;
     const [pageUrl, setPageUrl] = useState("")
-    const [previewOpacicty, setPreviewOpacicty] = useState(.3)
-    useEffect(() => {
 
+    useEffect(() => {
         var grid = document.querySelector('.grid');
         var colc = new Colcade(grid, {
             columns: '.grid-col',
@@ -61,6 +59,7 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
             setDisplay("flex")
         }, 1000);
     });
+
     useEffect(() => {
         if (window.screen.width < 768) {
             setFlag(2)
@@ -77,6 +76,7 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
     let inputStyle2 = {
         borderBottom: "8px solid white"
     };
+
     const displayImage = (image_url) => {
         setImagesrc(image_url)
         const modalp = document.querySelector(".modalp");
@@ -87,24 +87,10 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
                 modalp.classList.remove("open");
             }
         })
-        setTimeout(() => {
-            setPreviewOpacicty(.5)
-        }, 50);
-        setTimeout(() => {
-            setPreviewOpacicty(1)
-        }, 50);
-
     }
+
     const nextImage = () => {
-        setPreviewOpacicty(.3)
-        setTimeout(() => {
-            setPreviewOpacicty(.5)
-        }, 50);
-        setTimeout(() => {
-            setPreviewOpacicty(1)
-        }, 50);
         setStartingX(0)
-        console.log(startingX)
         let size = imagesData.length
         let index = imagesData.findIndex(img => img.image.url == imagesrc);
         if (index == size - 1) {
@@ -116,16 +102,9 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
         let nextImage = imagesData[index]
         setImagesrc(nextImage.image.url)
     }
+
     const prevImage = () => {
-        setPreviewOpacicty(.3)
-        setTimeout(() => {
-            setPreviewOpacicty(.5)
-        }, 50);
-        setTimeout(() => {
-            setPreviewOpacicty(1)
-        }, 50);
         setStartingX(0)
-        console.log(startingX)
         let size = imagesData.length
         let index = imagesData.findIndex(img => img.image.url == imagesrc);
         if (index == 0) {
@@ -138,31 +117,27 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
         setImagesrc(nextImage.image.url)
 
     }
+
     const touchStart = (event) => {
         setStartingX(0)
         var startx = event.touches[0].clientX
         setStartingX(startx)
-        console.log(startingX)
         var starty = event.touches[0].clientY
         setStartingY(starty)
     }
+
     const touchMove = (event) => {
         var movex = event.touches[0].clientX
         setMovingX(movex)
-        console.log(startingX)
-        console.log("movingX: ", movingX)
         var movey = event.touches[0].clientY
         setMovingY(movey)
     }
+
     const touchEnd = () => {
         if (startingX + 30 < movingX) {
-            console.log("right")
-            console.log(startingX)
             prevImage()
         }
         else if (startingX - 30 > movingX) {
-            console.log("left")
-            console.log(startingX)
             nextImage()
 
         }
@@ -249,7 +224,7 @@ function Home({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
                         </svg>
                     </div>
                     <div>
-                        <img style={{opacity: previewOpacicty}} src={imagesrc} className="full-img" onTouchStart={() => touchStart(event)} onTouchMove={() => touchMove(event)} onTouchEnd={() => touchEnd()} />
+                        <img src={imagesrc} className="full-img" onTouchStart={() => touchStart(event)} onTouchMove={() => touchMove(event)} onTouchEnd={() => touchEnd()} />
                     </div>
                     <div className="left" onClick={() => prevImage()} title="Previous">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">

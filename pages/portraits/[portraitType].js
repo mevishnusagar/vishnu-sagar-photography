@@ -4,6 +4,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import Prismic from "prismic-javascript";
 import { Client } from "../../prismic-configuration";
 import Head from 'next/head'
+import metaTags from '../../components/metaTags';
 
 export async function getStaticPaths() {
 
@@ -24,22 +25,25 @@ export async function getStaticPaths() {
 // params will contain the id for each generated page.
 export async function getStaticProps({ params }) {
     const prismicData = await Client().getByUID("portraits", params.portraitType);
-    console.log("prismicData:",prismicData)
+    console.log("prismicData:", prismicData)
     let images_Data = prismicData.data.images_group
     console.log("images_Data:", images_Data)
     images_Data.reverse()
     let meta_title = prismicData?.data?.meta_title[0]?.text
     let meta_keywords = prismicData?.data?.meta_keywords[0]?.text
+    let meta_ogImage = Object.keys(prismicData?.data?.social_media_image_thumbnail).length != 0 ?
+        prismicData?.results[0]?.data?.social_media_image_thumbnail.url : ""
     return {
         props: {
             images_Data: images_Data,
             meta_title: meta_title,
-            meta_keywords: meta_keywords
+            meta_keywords: meta_keywords,
+            meta_ogImage: meta_ogImage
         },
     };
 }
 
-function PortraitType({ images_Data, meta_title, meta_keywords }) {
+function PortraitType({ images_Data, meta_title, meta_keywords, meta_ogImage }) {
     const [flag, setFlag] = useState(3)
     const [width, setwidth] = useState(0)
     const [loading, setLoading] = useState(true)
@@ -52,6 +56,7 @@ function PortraitType({ images_Data, meta_title, meta_keywords }) {
     const [movingX, setMovingX] = useState();
     const [movingY, setMovingY] = useState();
     const antIcon = <LoadingOutlined style={{ fontSize: 26 }} spin />;
+    const [pageUrl, setPageUrl] = useState("")
     useEffect(() => {
 
         var grid = document.querySelector('.grid');
@@ -59,6 +64,7 @@ function PortraitType({ images_Data, meta_title, meta_keywords }) {
             columns: '.grid-col',
             items: '.grid-item'
         });
+        setPageUrl(window.location.href)
         setImagesData(images_Data)
         setwidth(window.screen.width)
         setTimeout(() => {
@@ -158,22 +164,35 @@ function PortraitType({ images_Data, meta_title, meta_keywords }) {
     return (
         <div>
             <Head>
+                {/* -- Primary Meta Tags -- */}
                 <title>{meta_title}</title>
+                <meta name="title" content={meta_title} />
+                <meta name="description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
+
+                {/* -- Open Graph / Facebook -- */}
                 <meta property="og:type" content="website" />
-                <meta
-                    name="keywords"
-                    content={meta_keywords}
-                />
+                <meta property="og:url" content={pageUrl} />
                 <meta
                     property="og:title"
                     content={meta_title}
                 />
+                <meta property="og:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
+                <meta property="og:image" content={meta_ogImage.length > 0 ? meta_ogImage : "/assets/images/sgr.JPG"} />
+
+                {/* -- Twitter - */}
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content={pageUrl} />
+                <meta property="twitter:title" content={meta_title} />
+                <meta property="twitter:description" content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario" />
+                <meta property="twitter:image" content={meta_ogImage.length > 0 ? meta_ogImage : "/assets/images/sgr.JPG"} />
                 <meta
-                    name="description"
-                    content="Fashion, commercial, portrait and landscape photographer based out of London, Ontario"
+                    name="keywords"
+                    content={meta_keywords}
                 />
-                <meta property="og:url" content="https://www.vishnusagarphotography.com/" />
                 <meta property="og:site_name" content="Vishnu Sagar Photography" />
+                <meta name="author" content="Vishnu Sagar" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                {/* <metaTags meta_title={meta_title} pageUrl={pageUrl} meta_keywords={meta_keywords} meta_ogImage={meta_ogImage} /> */}
             </Head>
             <div className="gallery-container">
 
