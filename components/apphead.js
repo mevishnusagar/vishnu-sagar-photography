@@ -251,6 +251,9 @@ export default function apphead() {
                                             <li className="menu-nav-item" id="portraits-active"><a className="menu-nav-link" href="/portraits"><span>
                                                 <div>Portraits</div>
                                             </span></a></li>
+                                            <li className="menu-nav-item" id="services-active"><a className="menu-nav-link" href="/services"><span>
+                                                <div>Services</div>
+                                            </span></a></li>
                                             <li className="menu-nav-item" id="landscape-active"><a className="menu-nav-link" href="/landscape"><span>
                                                 <div>Landscape</div>
                                             </span></a></li>
