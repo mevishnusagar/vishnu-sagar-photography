@@ -1,10 +1,26 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from 'next/link'
+export async function getStaticProps() {
+
+    const servicetCategories = await Client().query(
+        Prismic.Predicates.at("document.type", "services")
+    );
+    const activeservicetCategories = servicetCategories.results.filter(category => category.data.visible == true)
+    console.log("filtered:", activeservicetCategories[0])
+    activeservicetCategories.sort((a, b) => a.data.order - b.data.order)
+    return {
+        props: {
+            servicetCategories: activeservicetCategories,
+        },
+    };
+}
+
 export default function apphead() {
     const Route = useRouter()
     const homePage = ["home"]
     const portraitsPage = ["portraits", "indoor", "outdoor"]
+    const servicesPage = ["services"]
     const landscapePage = ["landscape"]
     const automotivePage = ["automotive"]
     const aboutPage = ["about"]
@@ -22,7 +38,7 @@ export default function apphead() {
         else {
             setIsIndexPage(false)
         }
-    },[Route])
+    }, [Route])
 
 
     useEffect(() => {
@@ -34,25 +50,33 @@ export default function apphead() {
                     document.querySelector("#home-active").classList.add("active")
                     document.querySelector("#portraits-active").classList.remove("active")
                     document.querySelector("#landscape-active").classList.remove("active")
-                    document.querySelector("#automotive-active").classList.remove("active")
+                    // document.querySelector("#automotive-active").classList.remove("active")
                     document.querySelector("#about-active").classList.remove("active")
                     document.querySelector("#contact-me-active").classList.remove("active")
                 } else if (portraitsPage.includes(baseUrl)) {
                     document.querySelector("#portraits-active").classList.add("active")
                     document.querySelector("#home-active").classList.remove("active")
                     document.querySelector("#landscape-active").classList.remove("active")
-                    document.querySelector("#automotive-active").classList.remove("active")
+                    // document.querySelector("#automotive-active").classList.remove("active")
                     document.querySelector("#about-active").classList.remove("active")
+                    document.querySelector("#contact-me-active").classList.remove("active")
+                } else if (servicesPage.includes(baseUrl)) {
+                    document.querySelector("#services-active").classList.add("active")
+                    document.querySelector("#home-active").classList.remove("active")
+                    document.querySelector("#landscape-active").classList.remove("active")
+                    // document.querySelector("#automotive-active").classList.remove("active")
+                    document.querySelector("#about-active").classList.remove("active")
+                    document.querySelector("#portraits-active").classList.remove("active")
                     document.querySelector("#contact-me-active").classList.remove("active")
                 } else if (landscapePage.includes(baseUrl)) {
                     document.querySelector("#landscape-active").classList.add("active")
                     document.querySelector("#home-active").classList.remove("active")
                     document.querySelector("#portraits-active").classList.remove("active")
-                    document.querySelector("#automotive-active").classList.remove("active")
+                    // document.querySelector("#automotive-active").classList.remove("active")
                     document.querySelector("#about-active").classList.remove("active")
                     document.querySelector("#contact-me-active").classList.remove("active")
                 } else if (automotivePage.includes(baseUrl)) {
-                    document.querySelector("#automotive-active").classList.add("active")
+                    // document.querySelector("#automotive-active").classList.add("active")
                     document.querySelector("#home-active").classList.remove("active")
                     document.querySelector("#portraits-active").classList.remove("active")
                     document.querySelector("#landscape-active").classList.remove("active")
@@ -63,14 +87,14 @@ export default function apphead() {
                     document.querySelector("#home-active").classList.remove("active")
                     document.querySelector("#portraits-active").classList.remove("active")
                     document.querySelector("#landscape-active").classList.remove("active")
-                    document.querySelector("#automotive-active").classList.remove("active")
+                    // document.querySelector("#automotive-active").classList.remove("active")
                     document.querySelector("#contact-me-active").classList.remove("active")
                 } else if (contactMePage.includes(baseUrl)) {
                     document.querySelector("#contact-me-active").classList.add("active")
                     document.querySelector("#home-active").classList.remove("active")
                     document.querySelector("#portraits-active").classList.remove("active")
                     document.querySelector("#landscape-active").classList.remove("active")
-                    document.querySelector("#automotive-active").classList.remove("active")
+                    // document.querySelector("#automotive-active").classList.remove("active")
                     document.querySelector("#about-active").classList.remove("active")
                 }
             }, 1000);
@@ -82,25 +106,33 @@ export default function apphead() {
                 document.querySelector("#home-active").classList.add("active")
                 document.querySelector("#portraits-active").classList.remove("active")
                 document.querySelector("#landscape-active").classList.remove("active")
-                document.querySelector("#automotive-active").classList.remove("active")
+                // document.querySelector("#automotive-active").classList.remove("active")
                 document.querySelector("#about-active").classList.remove("active")
                 document.querySelector("#contact-me-active").classList.remove("active")
             } else if (portraitsPage.includes(baseUrl)) {
                 document.querySelector("#portraits-active").classList.add("active")
                 document.querySelector("#home-active").classList.remove("active")
                 document.querySelector("#landscape-active").classList.remove("active")
-                document.querySelector("#automotive-active").classList.remove("active")
+                // document.querySelector("#automotive-active").classList.remove("active")
                 document.querySelector("#about-active").classList.remove("active")
+                document.querySelector("#contact-me-active").classList.remove("active")
+            } else if (servicesPage.includes(baseUrl)) {
+                document.querySelector("#services-active").classList.add("active")
+                document.querySelector("#home-active").classList.remove("active")
+                document.querySelector("#landscape-active").classList.remove("active")
+                // document.querySelector("#automotive-active").classList.remove("active")
+                document.querySelector("#about-active").classList.remove("active")
+                document.querySelector("#portraits-active").classList.remove("active")
                 document.querySelector("#contact-me-active").classList.remove("active")
             } else if (landscapePage.includes(baseUrl)) {
                 document.querySelector("#landscape-active").classList.add("active")
                 document.querySelector("#home-active").classList.remove("active")
                 document.querySelector("#portraits-active").classList.remove("active")
-                document.querySelector("#automotive-active").classList.remove("active")
+                // document.querySelector("#automotive-active").classList.remove("active")
                 document.querySelector("#about-active").classList.remove("active")
                 document.querySelector("#contact-me-active").classList.remove("active")
             } else if (automotivePage.includes(baseUrl)) {
-                document.querySelector("#automotive-active").classList.add("active")
+                // document.querySelector("#automotive-active").classList.add("active")
                 document.querySelector("#home-active").classList.remove("active")
                 document.querySelector("#portraits-active").classList.remove("active")
                 document.querySelector("#landscape-active").classList.remove("active")
@@ -111,14 +143,14 @@ export default function apphead() {
                 document.querySelector("#home-active").classList.remove("active")
                 document.querySelector("#portraits-active").classList.remove("active")
                 document.querySelector("#landscape-active").classList.remove("active")
-                document.querySelector("#automotive-active").classList.remove("active")
+                // document.querySelector("#automotive-active").classList.remove("active")
                 document.querySelector("#contact-me-active").classList.remove("active")
             } else if (contactMePage.includes(baseUrl)) {
                 document.querySelector("#contact-me-active").classList.add("active")
                 document.querySelector("#home-active").classList.remove("active")
                 document.querySelector("#portraits-active").classList.remove("active")
                 document.querySelector("#landscape-active").classList.remove("active")
-                document.querySelector("#automotive-active").classList.remove("active")
+                // document.querySelector("#automotive-active").classList.remove("active")
                 document.querySelector("#about-active").classList.remove("active")
             }
         }
@@ -149,16 +181,21 @@ export default function apphead() {
                                         Portraits
                                     </Link>
                                 </div>
+                                <div id="services-active">
+                                    <Link className="nav-item nav-item-portraits" href="/services" >
+                                        Services
+                                    </Link>
+                                </div>
                                 <div id="landscape-active">
                                     <Link className="nav-item nav-item-fourthpage" href="/landscape">
                                         Landscape
                                     </Link>
                                 </div>
-                                <div id="automotive-active">
+                                {/* <div id="automotive-active">
                                     <Link className="nav-item nav-item-fourthpage" href="/automotive" >
                                         Automotive
                                     </Link>
-                                </div>
+                                </div> */}
                                 <div id="about-active">
                                     <Link className="nav-item nav-item-about" href="/about" >
                                         About
@@ -169,9 +206,7 @@ export default function apphead() {
                                         Contact Me
                                     </Link>
                                 </div>
-                                {/* <Link className="nav-item nav-item-commercial" href="/commercial">
-                                    Commercial
-                                </Link> */}
+
                             </div>
                             <div className="social-icons">
                                 <div>
@@ -187,6 +222,11 @@ export default function apphead() {
                                 <div>
                                     <a className="btn" href="https://www.instagram.com/vishnusagar_vijayan/" ><i
                                         className="fa fa-instagram fa-sm"></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a className="btn" href="https://wa.me/+12263766078" ><i
+                                        className="fa fa-whatsapp fa-sm"></i>
                                     </a>
                                 </div>
                             </div>
@@ -214,9 +254,9 @@ export default function apphead() {
                                             <li className="menu-nav-item" id="landscape-active"><a className="menu-nav-link" href="/landscape"><span>
                                                 <div>Landscape</div>
                                             </span></a></li>
-                                            <li className="menu-nav-item" ><a className="menu-nav-link" href="/automotive"><span id="automotive-active">
+                                            {/* <li className="menu-nav-item" ><a className="menu-nav-link" href="/automotive"><span id="automotive-active">
                                                 <div>Automotive</div>
-                                            </span></a></li>
+                                            </span></a></li> */}
                                             {/* <li className="menu-nav-item"><a className="menu-nav-link" href="/commercial"><span>
                                                 <div>Commercial</div>
                                             </span></a></li> */}
@@ -241,6 +281,11 @@ export default function apphead() {
                                                     <div>
                                                         <a className="btn" href="https://www.instagram.com/vishnusagar_vijayan/" ><i
                                                             className="fa fa-instagram fa-sm"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div>
+                                                        <a className="btn" href="https://wa.me/+12263766078" ><i
+                                                            className="fa fa-whatsapp fa-sm"></i>
                                                         </a>
                                                     </div>
                                                 </div>
