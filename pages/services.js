@@ -47,7 +47,7 @@ function Services({ servicetCategories, meta_keywords }) {
                 />
                 <meta
                     property="og:title"
-                    content="servicets - Vishnu Sagar Photography"
+                    content="services - Vishnu Sagar Photography"
                 />
                 <meta
                     name="description"
