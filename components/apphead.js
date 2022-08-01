@@ -40,131 +40,75 @@ export default function apphead() {
         }
     }, [Route])
 
-
+    const changePageIndicator = () => {
+        const currentPageUrl = Route.pathname || "";
+        const [_, baseUrl] = currentPageUrl.split("/") || []
+        if (homePage.includes(baseUrl)) {
+            document.querySelector("#home-active").classList.add("active")
+            document.querySelector("#portraits-active").classList.remove("active")
+            document.querySelector("#services-active").classList.remove("active")
+            document.querySelector("#landscape-active").classList.remove("active")
+            // document.querySelector("#automotive-active").classList.remove("active")
+            document.querySelector("#about-active").classList.remove("active")
+            document.querySelector("#contact-me-active").classList.remove("active")
+        } else if (portraitsPage.includes(baseUrl)) {
+            document.querySelector("#portraits-active").classList.add("active")
+            document.querySelector("#home-active").classList.remove("active")
+            document.querySelector("#services-active").classList.remove("active")
+            document.querySelector("#landscape-active").classList.remove("active")
+            // document.querySelector("#automotive-active").classList.remove("active")
+            document.querySelector("#about-active").classList.remove("active")
+            document.querySelector("#contact-me-active").classList.remove("active")
+        } else if (servicesPage.includes(baseUrl)) {
+            document.querySelector("#services-active").classList.add("active")
+            document.querySelector("#home-active").classList.remove("active")
+            document.querySelector("#landscape-active").classList.remove("active")
+            // document.querySelector("#automotive-active").classList.remove("active")
+            document.querySelector("#about-active").classList.remove("active")
+            document.querySelector("#portraits-active").classList.remove("active")
+            document.querySelector("#contact-me-active").classList.remove("active")
+        } else if (landscapePage.includes(baseUrl)) {
+            document.querySelector("#landscape-active").classList.add("active")
+            document.querySelector("#home-active").classList.remove("active")
+            document.querySelector("#portraits-active").classList.remove("active")
+            document.querySelector("#services-active").classList.remove("active")
+            // document.querySelector("#automotive-active").classList.remove("active")
+            document.querySelector("#about-active").classList.remove("active")
+            document.querySelector("#contact-me-active").classList.remove("active")
+        } else if (automotivePage.includes(baseUrl)) {
+            // document.querySelector("#automotive-active").classList.add("active")
+            document.querySelector("#home-active").classList.remove("active")
+            document.querySelector("#portraits-active").classList.remove("active")
+            document.querySelector("#services-active").classList.remove("active")
+            document.querySelector("#landscape-active").classList.remove("active")
+            document.querySelector("#about-active").classList.remove("active")
+            document.querySelector("#contact-me-active").classList.remove("active")
+        } else if (aboutPage.includes(baseUrl)) {
+            document.querySelector("#about-active").classList.add("active")
+            document.querySelector("#home-active").classList.remove("active")
+            document.querySelector("#portraits-active").classList.remove("active")
+            document.querySelector("#services-active").classList.remove("active")
+            document.querySelector("#landscape-active").classList.remove("active")
+            // document.querySelector("#automotive-active").classList.remove("active")
+            document.querySelector("#contact-me-active").classList.remove("active")
+        } else if (contactMePage.includes(baseUrl)) {
+            document.querySelector("#contact-me-active").classList.add("active")
+            document.querySelector("#home-active").classList.remove("active")
+            document.querySelector("#portraits-active").classList.remove("active")
+            document.querySelector("#services-active").classList.remove("active")
+            document.querySelector("#landscape-active").classList.remove("active")
+            // document.querySelector("#automotive-active").classList.remove("active")
+            document.querySelector("#about-active").classList.remove("active")
+        }
+    }
     useEffect(() => {
         if (isIndexPage) {
             setTimeout(() => {
-                const currentPageUrl = Route.pathname || "";
-                const [_, baseUrl] = currentPageUrl.split("/") || []
-                if (homePage.includes(baseUrl)) {
-                    document.querySelector("#home-active").classList.add("active")
-                    document.querySelector("#portraits-active").classList.remove("active")
-                    document.querySelector("#services-active").classList.remove("active")
-                    document.querySelector("#landscape-active").classList.remove("active")
-                    // document.querySelector("#automotive-active").classList.remove("active")
-                    document.querySelector("#about-active").classList.remove("active")
-                    document.querySelector("#contact-me-active").classList.remove("active")
-                } else if (portraitsPage.includes(baseUrl)) {
-                    document.querySelector("#portraits-active").classList.add("active")
-                    document.querySelector("#home-active").classList.remove("active")
-                    document.querySelector("#services-active").classList.remove("active")
-                    document.querySelector("#landscape-active").classList.remove("active")
-                    // document.querySelector("#automotive-active").classList.remove("active")
-                    document.querySelector("#about-active").classList.remove("active")
-                    document.querySelector("#contact-me-active").classList.remove("active")
-                } else if (servicesPage.includes(baseUrl)) {
-                    document.querySelector("#services-active").classList.add("active")
-                    document.querySelector("#home-active").classList.remove("active")
-                    document.querySelector("#landscape-active").classList.remove("active")
-                    // document.querySelector("#automotive-active").classList.remove("active")
-                    document.querySelector("#about-active").classList.remove("active")
-                    document.querySelector("#portraits-active").classList.remove("active")
-                    document.querySelector("#contact-me-active").classList.remove("active")
-                } else if (landscapePage.includes(baseUrl)) {
-                    document.querySelector("#landscape-active").classList.add("active")
-                    document.querySelector("#home-active").classList.remove("active")
-                    document.querySelector("#portraits-active").classList.remove("active")
-                    document.querySelector("#services-active").classList.remove("active")
-                    // document.querySelector("#automotive-active").classList.remove("active")
-                    document.querySelector("#about-active").classList.remove("active")
-                    document.querySelector("#contact-me-active").classList.remove("active")
-                } else if (automotivePage.includes(baseUrl)) {
-                    // document.querySelector("#automotive-active").classList.add("active")
-                    document.querySelector("#home-active").classList.remove("active")
-                    document.querySelector("#portraits-active").classList.remove("active")
-                    document.querySelector("#services-active").classList.remove("active")
-                    document.querySelector("#landscape-active").classList.remove("active")
-                    document.querySelector("#about-active").classList.remove("active")
-                    document.querySelector("#contact-me-active").classList.remove("active")
-                } else if (aboutPage.includes(baseUrl)) {
-                    document.querySelector("#about-active").classList.add("active")
-                    document.querySelector("#home-active").classList.remove("active")
-                    document.querySelector("#portraits-active").classList.remove("active")
-                    document.querySelector("#services-active").classList.remove("active")
-                    document.querySelector("#landscape-active").classList.remove("active")
-                    // document.querySelector("#automotive-active").classList.remove("active")
-                    document.querySelector("#contact-me-active").classList.remove("active")
-                } else if (contactMePage.includes(baseUrl)) {
-                    document.querySelector("#contact-me-active").classList.add("active")
-                    document.querySelector("#home-active").classList.remove("active")
-                    document.querySelector("#portraits-active").classList.remove("active")
-                    document.querySelector("#services-active").classList.remove("active")
-                    document.querySelector("#landscape-active").classList.remove("active")
-                    // document.querySelector("#automotive-active").classList.remove("active")
-                    document.querySelector("#about-active").classList.remove("active")
-                }
+                changePageIndicator()
             }, 1000);
         }
         else {
-            const currentPageUrl = Route.pathname || "";
-            const [_, baseUrl] = currentPageUrl.split("/") || []
-            if (homePage.includes(baseUrl)) {
-                document.querySelector("#home-active").classList.add("active")
-                document.querySelector("#portraits-active").classList.remove("active")
-                document.querySelector("#services-active").classList.remove("active")
-                document.querySelector("#landscape-active").classList.remove("active")
-                // document.querySelector("#automotive-active").classList.remove("active")
-                document.querySelector("#about-active").classList.remove("active")
-                document.querySelector("#contact-me-active").classList.remove("active")
-            } else if (portraitsPage.includes(baseUrl)) {
-                document.querySelector("#portraits-active").classList.add("active")
-                document.querySelector("#home-active").classList.remove("active")
-                document.querySelector("#services-active").classList.remove("active")
-                document.querySelector("#landscape-active").classList.remove("active")
-                // document.querySelector("#automotive-active").classList.remove("active")
-                document.querySelector("#about-active").classList.remove("active")
-                document.querySelector("#contact-me-active").classList.remove("active")
-            } else if (servicesPage.includes(baseUrl)) {
-                document.querySelector("#services-active").classList.add("active")
-                document.querySelector("#home-active").classList.remove("active")
-                document.querySelector("#landscape-active").classList.remove("active")
-                // document.querySelector("#automotive-active").classList.remove("active")
-                document.querySelector("#about-active").classList.remove("active")
-                document.querySelector("#portraits-active").classList.remove("active")
-                document.querySelector("#contact-me-active").classList.remove("active")
-            } else if (landscapePage.includes(baseUrl)) {
-                document.querySelector("#landscape-active").classList.add("active")
-                document.querySelector("#home-active").classList.remove("active")
-                document.querySelector("#portraits-active").classList.remove("active")
-                document.querySelector("#services-active").classList.remove("active")
-                // document.querySelector("#automotive-active").classList.remove("active")
-                document.querySelector("#about-active").classList.remove("active")
-                document.querySelector("#contact-me-active").classList.remove("active")
-            } else if (automotivePage.includes(baseUrl)) {
-                // document.querySelector("#automotive-active").classList.add("active")
-                document.querySelector("#home-active").classList.remove("active")
-                document.querySelector("#portraits-active").classList.remove("active")
-                document.querySelector("#services-active").classList.remove("active")
-                document.querySelector("#landscape-active").classList.remove("active")
-                document.querySelector("#about-active").classList.remove("active")
-                document.querySelector("#contact-me-active").classList.remove("active")
-            } else if (aboutPage.includes(baseUrl)) {
-                document.querySelector("#about-active").classList.add("active")
-                document.querySelector("#home-active").classList.remove("active")
-                document.querySelector("#portraits-active").classList.remove("active")
-                document.querySelector("#services-active").classList.remove("active")
-                document.querySelector("#landscape-active").classList.remove("active")
-                // document.querySelector("#automotive-active").classList.remove("active")
-                document.querySelector("#contact-me-active").classList.remove("active")
-            } else if (contactMePage.includes(baseUrl)) {
-                document.querySelector("#contact-me-active").classList.add("active")
-                document.querySelector("#home-active").classList.remove("active")
-                document.querySelector("#portraits-active").classList.remove("active")
-                document.querySelector("#services-active").classList.remove("active")
-                document.querySelector("#landscape-active").classList.remove("active")
-                // document.querySelector("#automotive-active").classList.remove("active")
-                document.querySelector("#about-active").classList.remove("active")
-            }
+            changePageIndicator()
         }
     }, [Route])
 
