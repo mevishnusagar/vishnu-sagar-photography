@@ -32,7 +32,7 @@ export async function getStaticProps({ params }) {
     let meta_title = prismicData?.data?.meta_title[0]?.text
     let meta_keywords = prismicData?.data?.meta_keywords[0]?.text
     let meta_ogImage = Object.keys(prismicData?.data?.social_media_image_thumbnail).length != 0 ?
-        prismicData?.results[0]?.data?.social_media_image_thumbnail.url : ""
+        prismicData?.data?.social_media_image_thumbnail.url : ""
     return {
         props: {
             images_Data: images_Data,
